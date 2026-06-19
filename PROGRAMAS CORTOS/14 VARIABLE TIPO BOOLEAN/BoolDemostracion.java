@@ -1,4 +1,4 @@
-public class Scritp12_BoolDemo {
+public class BoolDemostracion {
     public static void main(String[] args) {
         
         boolean b;

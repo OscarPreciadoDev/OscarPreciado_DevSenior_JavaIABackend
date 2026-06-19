@@ -1,4 +1,4 @@
-public class Script3_BloqueBase {                 // public: accesible desde cualquier lugar
+public class BloqueDeClase {                 // public: accesible desde cualquier lugar
                                          // class: define una clase
                                          // Script3: nombre de la clase
                                          // {: inicio del bloque de la clase

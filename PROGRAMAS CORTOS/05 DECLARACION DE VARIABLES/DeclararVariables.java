@@ -5,7 +5,7 @@ El siguiente programa crea dos variables llamadas var1 y var2
 
 */
 
-public class Script5_CrearVariables {
+public class DeclararVariables {
     public static void main(String argsp[]){
         int var1; // esto declara una variable
         int var2; // esto declara otra variable

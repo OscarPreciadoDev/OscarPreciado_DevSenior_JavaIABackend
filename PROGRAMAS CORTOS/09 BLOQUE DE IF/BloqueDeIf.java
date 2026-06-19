@@ -2,7 +2,7 @@
     Demuestre un bloque de codigo.
 */
 
-public class Script9_BloqueDemo {
+public class BloqueDeIf {
     public static void main(String args []){
 
         double i,j,d;

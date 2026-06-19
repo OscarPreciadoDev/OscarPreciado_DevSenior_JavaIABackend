@@ -3,7 +3,7 @@
 
 import javax.swing.JOptionPane;                                     // Importa la libreria swing (Ventanas de interfaces)
 
-public class Script2 {                                                  // Una clase es una plantilla
+public class VariablesYTiposDeDatosEmergente {                                                  // Una clase es una plantilla
                                                                     // Un public es un modificador de acceso (Public/Private/Protegido)
                                                                     // Main : Metodo principal
                                                                     // declarar tipo de dato 
@@ -35,6 +35,11 @@ public class Script2 {                                                  // Una c
 
         JOptionPane.showMessageDialog(null, "Nombre: "+ nombres);
         JOptionPane.showMessageDialog(null, "Edad: "+ edad);
-        
+        JOptionPane.showMessageDialog(null, "Salario: "+ salario);
+        JOptionPane.showMessageDialog(null, "promedio: "+ promedio);
+        JOptionPane.showMessageDialog(null, "Sexo: "+ sexo);
+        JOptionPane.showMessageDialog(null, "Edad: "+ edad);
+        JOptionPane.showMessageDialog(null, "Estado: "+ estado);
+
     }
 }

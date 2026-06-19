@@ -2,7 +2,7 @@
     Use el teorema de pitagoras para encontrar la longitud de la hipotenusa dadas las longitudes de los dos lados opuestos
 */
 
-public class Script10_hipotenusa {
+public class Hipotenusa {
     public static void main(String[] args) {
         
         double x,y,z;

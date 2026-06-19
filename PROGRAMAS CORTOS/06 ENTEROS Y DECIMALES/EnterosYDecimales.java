@@ -2,7 +2,7 @@
     Este programa ilustra las diferencias entre int y double
 */
 
-public class Script6_IntDoubleDiferencia {
+public class EnterosYDecimales {
     public static void main(String args[]){
 
         int var; // declara una variable entera

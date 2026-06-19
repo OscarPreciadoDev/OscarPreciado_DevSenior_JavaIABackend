@@ -2,7 +2,7 @@
     Demuestra el bucle for
 */
 
-public class Script8_ForDemo {
+public class ForDemostracion {
     public static void main(String args[]){
 
         int cuenta;

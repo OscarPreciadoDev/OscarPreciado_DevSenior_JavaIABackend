@@ -2,7 +2,7 @@
     Calcule el numero de pulgadas cubicas en una milla cubica
 */
 
-public class Script9_Pulgadas {
+public class PulgadasCubicas {
     public static void main(String args[]){
 
         long pc;

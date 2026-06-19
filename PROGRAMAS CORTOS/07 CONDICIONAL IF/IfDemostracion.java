@@ -3,7 +3,7 @@
 */
 
 
-public class Script7_IfDemo {
+public class IfDemostracion {
     public static void main(String args[]){
         int a,b,c;
 

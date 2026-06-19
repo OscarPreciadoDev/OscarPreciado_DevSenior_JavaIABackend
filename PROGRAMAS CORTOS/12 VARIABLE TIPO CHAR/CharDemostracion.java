@@ -1,4 +1,4 @@
-public class Script11_Caracter {
+public class CharDemostracion {
     
     public static void main(String[] args) {
         

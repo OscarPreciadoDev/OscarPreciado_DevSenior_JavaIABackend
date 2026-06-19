@@ -3,7 +3,7 @@
 //Importar una libreria para recoger entrada de la terminal
 import java.util.Scanner;
 
-public class Script1 {
+public class EjercicioVariablesYTiposDeDatos {
     
     public static void main(String[] args) throws Exception {
 
