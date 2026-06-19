@@ -40,6 +40,9 @@ public class Script1 {
 
         System.out.println("> Datos del usuario:\n> Nombre: " + nombres + "\n> Edad: " + edad + "\n> Salario: " + salario + "\n> Promedio: " + promedio + "\n> Genero: " + sexo + "\n> Estado: " + estado);
 
+        entrada.close();
+        
+
         
     }
 }

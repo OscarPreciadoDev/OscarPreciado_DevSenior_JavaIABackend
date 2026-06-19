@@ -1,13 +1,16 @@
-public class casting {
+public class Casting {
     public static void main(String[] args) {
         
-        int entero = 5;
+        int enteros = 5;
+        double aDecimal = enteros; // implicita, se convierte automaticamente a double
 
-        double decimal = entero; // Conversion implicita de int a double
+        System.out.println(aDecimal); // 5.0
 
-        System.out.println(">> Valor entero "+ decimal);
-        
-        System.out.println(">> Valor entero "+ entero);
+        double precio = 9.99;
+
+        int precioRedondeado = (int) precio; // explicita el (int) es el casting
+
+        System.out.println(precioRedondeado); // 9 (corta, no redondea !! )
 
     }
 }

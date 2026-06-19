@@ -3,8 +3,6 @@
     se definen iniciando con "final"
 */
 
-import java.nio.channels.Pipe.SourceChannel;
-
 public class Constantes {
     public static void main(String args[]){
         final double IVA = 0.19;

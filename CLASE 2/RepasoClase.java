@@ -26,7 +26,11 @@ public class RepasoClase {
     System.out.println(">> Nombre: "+nombre);
     System.out.println(">> Edad: "+edad);
     System.out.println(">> Estatura: "+estatura+" m");
-    }
+        
+    // Cierre de la entrada 
+    entrada.close();
+}
+
 }
 
 // Public hace referencia al punto de acceso
