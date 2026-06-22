@@ -15,5 +15,6 @@ public class doWhileDemostracion {
         } while (opcion != 2);
         
         System.out.println("Saliste del menu.");
+        sc.close();
     }
 }

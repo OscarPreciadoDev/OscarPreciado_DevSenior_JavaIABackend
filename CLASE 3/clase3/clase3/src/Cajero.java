@@ -16,5 +16,7 @@ public class Cajero {
         } else {
             System.out.println(">> Sin descuento");
         }
+
+        sc.close();
     }
 }

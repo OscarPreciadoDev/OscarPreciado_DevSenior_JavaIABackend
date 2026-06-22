@@ -28,5 +28,6 @@ public class CajeroV2 {
                 System.out.println("Opcion Invalida");
                 break;
         }
+        sc.close();
     }
 }

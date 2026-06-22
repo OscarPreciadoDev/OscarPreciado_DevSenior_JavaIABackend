@@ -1,8 +1,12 @@
+
 import java.util.Scanner;
 
-public class CajeroV3 {
+public class CajeroVFinal {
     public static void main(String[] args) {
+        
         Scanner sc = new Scanner(System.in);
+        Pedido pedido = new Pedido(); 
+
         int opcion;
 
         do {
@@ -14,22 +18,20 @@ public class CajeroV3 {
 
             switch (opcion) {
                 case 1:
-                    System.out.print("Subtotal: ");
+                    System.out.print("Subtotal : ");
                     double subtotal = sc.nextDouble();
-                    if (subtotal > 100000) {
-                        System.out.println("Pedido con descuento");
-                    } else {
-                        System.out.println("Pedido sin descuento");
-                    }
+                    double total = pedido.CalcularTotal(subtotal, 0.10);
+                    System.out.println("Total con propina: " + total);
                     break;
                 case 2:
                     System.out.println("Caja cerrada");
                     break;
                 default:
                     System.out.println("Opcion invalida");
+                    break;
             }
         } while (opcion != 2);
+
         sc.close();
     }
 }
-        
