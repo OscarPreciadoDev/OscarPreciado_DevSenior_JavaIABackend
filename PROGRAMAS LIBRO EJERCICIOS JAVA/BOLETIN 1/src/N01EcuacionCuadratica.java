@@ -26,7 +26,7 @@ Mostrar al usuario:
 
 import java.util.Scanner;                                                                                              // Se importa la libreria de Scanner para tener entradas comodas
 
-public class N01Ecuacion {                                                                                             // Definicion de la clase
+public class N01EcuacionCuadratica {                                                                                             // Definicion de la clase
     public static void main(String[] args) {                                                                           // Metodo Main
         Scanner sc = new Scanner(System.in);                                                                           // Se crea un Scanner en la variable sc
 
