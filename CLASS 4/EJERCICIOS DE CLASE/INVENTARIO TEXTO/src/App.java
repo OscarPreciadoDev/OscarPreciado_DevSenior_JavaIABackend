@@ -8,17 +8,17 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         final int MAX = 3;
-        String[] nombres = new String[MAX];
+        String[] productos = new String[MAX];
         Scanner sc = new Scanner(System.in);
 
         for (int i = 0; i<MAX ;i++){
-            System.out.print("Ingrese un nombre: ");
-            nombres[i] = sc.nextLine();
+            System.out.print("Ingrese un producto: ");
+            productos[i] = sc.nextLine();
         }
         sc.close();
 
         for (int i=0; i<MAX;i++){
-            System.out.println((i+1)+ ". " + nombres[i]);
+            System.out.println((i+1)+ ". " + productos[i]);
         }
     }
 }
