@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EJERCICIOS DE CLASE/ACUMULADOR/ACUMULADOR.iml" filepath="$PROJECT_DIR$/EJERCICIOS DE CLASE/ACUMULADOR/ACUMULADOR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EJERCICIOS DE CLASE/BUSCAR EN ARRAY/BUSCAR EN ARRAY.iml" filepath="$PROJECT_DIR$/EJERCICIOS DE CLASE/BUSCAR EN ARRAY/BUSCAR EN ARRAY.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CLASS 4.iml" filepath="$PROJECT_DIR$/.idea/CLASS 4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GESTOR INVENTARIO/GESTOR INVENTARIO.iml" filepath="$PROJECT_DIR$/GESTOR INVENTARIO/GESTOR INVENTARIO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EJERCICIOS DE CLASE/INVENTARIO TEXTO/INVENTARIO TEXTO.iml" filepath="$PROJECT_DIR$/EJERCICIOS DE CLASE/INVENTARIO TEXTO/INVENTARIO TEXTO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EJERCICIOS DE CLASE/SOLO ARRAY/SOLO ARRAY.iml" filepath="$PROJECT_DIR$/EJERCICIOS DE CLASE/SOLO ARRAY/SOLO ARRAY.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EJERCICIOS DE CLASE/SOLO MENU/SOLO MENU.iml" filepath="$PROJECT_DIR$/EJERCICIOS DE CLASE/SOLO MENU/SOLO MENU.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EJERCICIOS DE CLASE/SOLO VALIDACION/SOLO VALIDACION.iml" filepath="$PROJECT_DIR$/EJERCICIOS DE CLASE/SOLO VALIDACION/SOLO VALIDACION.iml" />
+    </modules>
+  </component>
+</project>

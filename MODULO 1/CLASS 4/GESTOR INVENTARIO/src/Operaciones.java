@@ -12,7 +12,7 @@ public class Operaciones {
     static int[] cantidades = new int[MAX];
     static double[] precios = new double[MAX];
     static int total = 0;
-    static boolean hayProducto = false;
+    // static boolean hayProducto = false;
 
 
     public static void registrar(Scanner sc){
