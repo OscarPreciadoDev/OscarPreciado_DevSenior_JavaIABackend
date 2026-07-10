@@ -3,15 +3,18 @@ package cuentaBancaria;
 public class CuentaBancaria {
     private String titular;
     private String numeroCuenta;
+    private String tipoCuenta; // (ahorros / corriente)
     private double saldo;
 
-    public CuentaBancaria() {
+    public CuentaBancaria(String s) {
+        this.tipoCuenta = "Sin asignar";
         this.titular = "Sin asignar";
         this.numeroCuenta = "0000";
         this.saldo = 0.0;
     }
 
-    public CuentaBancaria(String titular, String numeroCuenta, double saldoInicial) {
+    public CuentaBancaria(String tipoCuenta, String titular, String numeroCuenta, double saldoInicial) {
+        this.tipoCuenta = tipoCuenta;
         this.titular = titular;
         this.numeroCuenta = numeroCuenta;
         if (saldoInicial >= 0) {
@@ -23,6 +26,10 @@ public class CuentaBancaria {
 
     public String getTitular() {
         return titular;
+    }
+
+    public String getTipoCuenta() {
+        return tipoCuenta;
     }
 
     public double getSaldo() {
@@ -52,7 +59,13 @@ public class CuentaBancaria {
     }
 
     public String toString() {
-        return "Cuenta " + numeroCuenta + " | Titular: " + titular + " | Saldo: $" + saldo;
+        return "Tipo de cuenta: "+ tipoCuenta + "|Cuenta " + numeroCuenta + " | Titular: " + titular + " | Saldo: $" + saldo;
+    }
+
+    // Agregar un metodo transferir que reutilice 'retirar' en l acuenta origen y depositar en la cuenta destino
+
+    public void transferir(CuentaBancaria destino, double monto){
+        retirar(monto);
     }
 
 }
