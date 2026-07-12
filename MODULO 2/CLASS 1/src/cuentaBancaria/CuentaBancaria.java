@@ -1,20 +1,23 @@
 package cuentaBancaria;
 
 public class CuentaBancaria {
+
+    // Declaracion de atributos de la clase
     private String titular;
     private String numeroCuenta;
-    private String tipoCuenta; // (ahorros / corriente)
     private double saldo;
+    private String tipoCuenta;
 
-    public CuentaBancaria(String s) {
-        this.tipoCuenta = "Sin asignar";
+    // Constructor vacio
+    public CuentaBancaria() {
         this.titular = "Sin asignar";
         this.numeroCuenta = "0000";
         this.saldo = 0.0;
+        this.tipoCuenta = "Sin asignar";
     }
 
-    public CuentaBancaria(String tipoCuenta, String titular, String numeroCuenta, double saldoInicial) {
-        this.tipoCuenta = tipoCuenta;
+    // Constructor con parametros
+    public CuentaBancaria(String titular, String numeroCuenta, double saldoInicial) {
         this.titular = titular;
         this.numeroCuenta = numeroCuenta;
         if (saldoInicial >= 0) {
@@ -24,48 +27,66 @@ public class CuentaBancaria {
         }
     }
 
+    // Getters de los atributos para acceder de manera controlada
+
+
     public String getTitular() {
         return titular;
-    }
-
-    public String getTipoCuenta() {
-        return tipoCuenta;
     }
 
     public double getSaldo() {
         return saldo;
     }
 
+    // Metodo controlado para el uso depósito de dinero
+
     public void depositar(double monto) {
         if (monto <= 0) {
-            System.out.println("Error: el monto a depositar debe ser mayor a cero.");
-            return;
+            System.out.println("Error: el monto a depositar debe ser mayor a 0.");
+        } else {
+            saldo += monto;
+            System.out.println("Deposito exitoso. Nuevo saldo: $" + saldo);
         }
-        saldo += monto;
-        System.out.println("Deposito exitoso. Nuevo saldo: $" + saldo);
     }
+
+    // Metodo controlado para el uso retiro de dinero
 
     public void retirar(double monto) {
         if (monto <= 0) {
-            System.out.println("Error: el monto a retirar debe ser mayor a cero.");
+            System.out.println("Error: el monto a retirar debe ser mayor a 0.");
             return;
         }
         if (monto > saldo) {
             System.out.println("Error: fondos insuficientes. Saldo actual: $" + saldo);
             return;
+        } else {
+            saldo -= monto;
+            System.out.println("Retiro exitoso. Nuevo saldo: $" + saldo);
         }
-        saldo -= monto;
-        System.out.println("Retiro exitoso. Nuevo saldo: $" + saldo);
+
     }
+
+    // Metodo toString() para mostrar correctamente el objeto
 
     public String toString() {
-        return "Tipo de cuenta: "+ tipoCuenta + "|Cuenta " + numeroCuenta + " | Titular: " + titular + " | Saldo: $" + saldo;
+        return ("Cuenta " + numeroCuenta + " | Titular: " + titular + " | Saldo: " + saldo);
     }
 
-    // Agregar un metodo transferir que reutilice 'retirar' en l acuenta origen y depositar en la cuenta destino
+    // Metodo que reutilize retirar en una cuenta de origen y depositar en la de destino.
 
-    public void transferir(CuentaBancaria destino, double monto){
-        retirar(monto);
+    public void transferir(CuentaBancaria destino, double monto) {
+        if (destino == this) {
+            System.out.println("Error: No puede transferir a la misma cuenta. Saldo actual: $" + saldo);
+            return;
+        } else if (monto <= 0){
+            System.out.println("Error: El monto debe ser mayor a 0. ");
+            return;
+            } else if (monto > saldo) {
+            System.out.println("Error: fondos insuficientes. Saldo actual: $" + saldo);
+            return;
+        }   else {
+            saldo -= monto;
+            destino.depositar(monto);
+        }
     }
-
 }
