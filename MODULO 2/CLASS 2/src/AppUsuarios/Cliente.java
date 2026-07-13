@@ -1,0 +1,26 @@
+package AppUsuarios;
+
+// Clase hija
+
+public class Cliente extends Usuario implements Notificable {
+
+    // Atributos de cliente
+
+    private int puntos;
+
+    // Constructor llamando al constructor padre
+
+    public Cliente(String nombre, String email){
+        super(nombre, email);
+        this.puntos = 0;
+    }
+
+    // Metodo sobreescrito del panel de usuario
+
+    @Override
+    public String panelInicio(){
+        return("Panel de Cliente: ver productos y mis compras");
+    }
+
+
+}
