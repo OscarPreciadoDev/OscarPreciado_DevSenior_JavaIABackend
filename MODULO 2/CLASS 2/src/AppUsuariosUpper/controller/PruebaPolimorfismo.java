@@ -1,14 +1,21 @@
-package AppUsuarios;
+package AppUsuariosUpper.controller;
 
 // Prueba de polimorfismo, se crea un array donde los elementos guardados
 // son de las clases creadas con los parámetros definidos (nombre, email)
+
+import AppUsuariosUpper.model.Administrador;
+import AppUsuariosUpper.model.Cliente;
+import AppUsuariosUpper.model.Usuario;
+import AppUsuariosUpper.model.UsuarioInvitado;
+import AppUsuariosUpper.model.Vendedor;
 
 public class PruebaPolimorfismo  {
     public static void main(String[] args) {
         Usuario[] usuarios = {
                 new Cliente("Ana", "ana@mail.com"),
                 new Administrador("Luis","luis@mail.com"),
-                new Vendedor("Marta","marta@mail.com")
+                new Vendedor("Marta","marta@mail.com"),
+                new UsuarioInvitado("Pedro", "pedro@mail.com")
         };
 
         // Recorre el array e imprime el nombre, y el panel de inicio

@@ -1,4 +1,4 @@
-package AppUsuarios;
+package AppUsuarios.model;
 
 // Clase padre, esta ahora es abstracta
 

@@ -1,8 +1,9 @@
-package AppUsuarios;
+package Ejemplos4;
 
 // Ejemplo ilustrativo del concepto de interfaces
 
-public interface MetodoPago {
-
+public abstract interface MetodoPago {
     String procesarPago(double monto);
 }
+
+

@@ -1,4 +1,4 @@
-package AppUsuarios;
+package AppUsuarios.model;
 
 // Clase hija
 
@@ -22,5 +22,12 @@ public class Cliente extends Usuario implements Notificable {
         return("Panel de Cliente: ver productos y mis compras");
     }
 
+
+    // Implementa el metodo contratado en la interfaz "Notificable"
+
+    @Override
+    public String recibirNotificacion(String mensaje) {
+        return "Email a " + email + ": " + mensaje;
+    }
 
 }

@@ -17,7 +17,7 @@ class Cuadrado extends Figura {
     // sobreescribe el metodo de calcular área, bajo la logica para cuadrado
 
     @Override
-    public double CalcularArea() {
+    public double calcularArea() {
         return lado * lado;
     }
 }

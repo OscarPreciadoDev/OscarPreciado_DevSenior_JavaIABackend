@@ -1,8 +1,8 @@
-package AppUsuarios;
+package AppUsuarios.model;
 
 // Clase hija
 
-public class Administrador extends Usuario{
+public class Administrador extends Usuario {
 
     // Constructor
 

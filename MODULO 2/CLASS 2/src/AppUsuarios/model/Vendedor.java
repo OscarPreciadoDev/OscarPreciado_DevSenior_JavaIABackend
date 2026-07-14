@@ -1,8 +1,8 @@
-package AppUsuarios;
+package AppUsuarios.model;
 
 // Clase hija
 
-public class Vendedor extends Usuario{
+public class Vendedor extends Usuario implements Notificable {
 
     // Constructor
 
@@ -15,5 +15,10 @@ public class Vendedor extends Usuario{
     @Override
     public String panelInicio(){
         return("Panel de Vendedor: publicar y gestionar mis productos");
+    }
+
+    @Override
+    public String recibirNotificacion(String mensaje){
+        return ("SMS al vendedor " + nombre + ": " + mensaje);
     }
 }

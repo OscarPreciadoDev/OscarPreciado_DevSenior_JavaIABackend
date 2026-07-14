@@ -7,7 +7,6 @@ package Ejemplos3;
 // Clase padre
 
 public abstract class Figura {
-    public abstract double CalcularArea(); // El metodo es abstracto y obliga a las clases hijas a definirlo
-
+    public abstract double calcularArea(); // El metodo es abstracto y obliga a las clases hijas a definirlo
 }
 
