@@ -14,9 +14,9 @@ public class Animal {
         this.nombre = nombre;
     }
 
-    // Metodos
+    // metodos
 
     public String hacerSonido(){
-        return("Sonido generico");
+        return("sonido genérico");
     }
 }

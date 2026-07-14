@@ -5,10 +5,10 @@ package Ejemplos1;
 public class Vehiculo {
 
     // Atributos que heredara a la clase hija
-    protected String marca;             // Protected inidica que las clases hijas tiene acceso a estos atributos
+    protected String marca;             // Protected indica que las clases hijas tiene acceso a estos atributos
     protected int velocidad;
 
-    // Metodos que heredara a la clase hija
+    // metodos que heredara a la clase hija
     public Vehiculo(String marca){
         this.marca =  marca;
         this.velocidad = 0;

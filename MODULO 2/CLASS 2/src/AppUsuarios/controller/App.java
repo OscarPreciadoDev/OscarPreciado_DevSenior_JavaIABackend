@@ -29,7 +29,7 @@ public class App {
 
         System.out.println("--- Notificaciones ---");
 
-        // Manda notificacion usando el metodo implementado en servicio
+        // Manda notificación usando el metodo implementado en servicio
 
         servicio.notificarATodos(usuarios, "Oferta del dia");
 
