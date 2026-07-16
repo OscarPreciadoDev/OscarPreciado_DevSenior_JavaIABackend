@@ -1,10 +1,10 @@
 /*
-El siguiente programa solicita dos números y devuelve una respuesta indicando cuál es mayor.
+Pedir dos numeros y mostrarlos ordenados de mayor a menor
  */
 
 import java.util.Scanner;
 
-public class N07MayorDeDosNumeros {
+public class N08ListarNumeros {
 
     public static void main(String[] args){
         int num1,num2;
@@ -12,11 +12,11 @@ public class N07MayorDeDosNumeros {
         boolean run = true;
 
         String encabezado = """
-                \t\t *** COMPARADOR DE NUMEROS ***
-                Ingrese dos números y el programa le indicara cual es el mayor
+                \t\t *** LISTADO DE NUMEROS ***
+                Ingrese dos números y el programa los devolvera ordenados de mayor a menor
                 """;
 
-        String preguntaEjecucion = "Desea ingresar una nueva comparacion? | (1) SI | (2) NO | ---> ";
+        String preguntaEjecucion = "Desea ingresar una nueva lista? | (1) SI | (2) NO | ---> ";
 
         System.out.println(encabezado);
         do {
@@ -33,18 +33,21 @@ public class N07MayorDeDosNumeros {
         sc.close();
     }
 
+
     // Metodo que compara cuál es el mayor entre dos números.
 
     public static void compararNumeros(int num1, int num2) {
         if (num1 > num2) {
-            System.out.println("El numero " + num1 + " es mayor que el numero " + num2);
+            System.out.println(num1 + " " + num2);
             return;
         } else if (num1 < num2) {
-            System.out.println("El numero " + num2 + " es mayor que el numero " + num1);
+            System.out.println(num2 + " " + num1);
             return;
         } else {
             System.out.println("Los dos números son iguales.");
         }
     }
-}
 
+
+
+}
