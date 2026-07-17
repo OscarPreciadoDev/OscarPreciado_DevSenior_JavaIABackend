@@ -48,7 +48,7 @@ public class N11VoltearNumeroV2 {
     }
 
     public static boolean validarNumero(int num){
-        return (num>= 0 && num <= 9999);
+        return (num>= 0 && num <= 99999);
     }
 
 }
