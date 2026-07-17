@@ -1,4 +1,4 @@
-///*
+package OtrosEjemplos; ///*
 //A continuación se presenta la forma general de una definición de clase
 // */
 //// Ej01EstructuraClase = nombre de la clase
