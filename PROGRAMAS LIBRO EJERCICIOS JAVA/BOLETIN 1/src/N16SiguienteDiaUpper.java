@@ -1,29 +1,27 @@
-/*
-Pedir el día, mes y año de una fecha e indicar si la fecha es correcta. Suponiendo todos los meses de 30 días.
- */
-
 import java.util.Scanner;
 
-public class N14VerificadorDeFecha {
+public class N16SiguienteDiaUpper {
     public static void main(String[] args){
 
         boolean run = true;
         Scanner input = new Scanner(System.in);
         int dia,mes,anio;
 
-        String encabezado ="=".repeat(50)+"\n\t\t\tFORMATEADOR DE FECHA\n"+"=".repeat(50);
-        String instrucciones ="\nIngrese un dia, un mes y un año para formatear dicha fecha ingresada.\n(debe ingresar valores logicos dentro de lo que comprenden las fechas)";
+        String encabezado ="=".repeat(50)+"\n\t\t\tSIGUIENTE DIA\n"+"=".repeat(50);
+        String instrucciones ="\nIngrese un dia, un mes y un año para ver el siguiente dia.\n(debe ingresar valores logicos dentro de lo que comprenden las fechas)";
         String pieDePrograma ="\n"+"=".repeat(50)+"\n\t\t\tFIN DEL PROGRAMA\n"+"=".repeat(50);
         String PreguntaEjecucion ="\nDesea ingresar una nuevo Numero? | (1) SI | (2) NO | ---> ";
 
         System.out.println(encabezado);
         do {
+
             System.out.println(instrucciones);
             dia = leerDia(input, "Ingrese un dia: ");
             mes = leerMes(input, "Ingrese un mes: ");
-            anio = leerAnio(input, "Ingrese un año: ");
-            if (validarFecha(dia,mes)){
-                imprimirFecha(dia,mes,anio);
+            anio = leerAnio(input, "Ingrese una año: ");
+
+            if(validarFecha(dia,mes)){
+                imprimirSiguienteDia(dia,mes,anio);
             } else {
                 errorFecha(dia,mes);
             }
@@ -33,7 +31,6 @@ public class N14VerificadorDeFecha {
 
         } while (run);
 
-        input.close();
         System.out.println(pieDePrograma);
 
     }
@@ -44,7 +41,6 @@ public class N14VerificadorDeFecha {
             if (dia>=1 && dia<=31) return dia;
             else System.out.println("ERROR: El dia ingresado debe estar entre 1 y 30.");
         }
-
     }
 
     public static int leerMes(Scanner input, String mensaje){
@@ -58,12 +54,12 @@ public class N14VerificadorDeFecha {
     public static int leerAnio(Scanner input, String mensaje){
         while (true) {
             int anio = Validador.leerEntero(input, mensaje);
-            if (anio >= 0 && anio <=100000) return anio;
+            if (anio >= 1 && anio <=100000) return anio;
             else System.out.println("ERROR: El anio ingresado debe estar entre 1 y 100000.");
         }
     }
 
-    public static void imprimirFecha(int dia,int mes,int anio){
+    public static void imprimirSiguienteDia(int dia,int mes,int anio){
         String[] nombreMes = {
                 "Enero",
                 "Febrero",
@@ -78,13 +74,25 @@ public class N14VerificadorDeFecha {
                 "Noviembre",
                 "Diciembre"
         };
-        System.out.println(dia+" / "+ nombreMes[mes-1] +" / "+anio);
-    }
 
-    public static boolean validarFecha(int dia,int mes){
-        if (mes == 2 && dia > 28) return false;
-        else if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30) return false;
-        else return true;
+        if (mes == 2 ) {
+            if (dia == 28) {
+                dia = 1;
+                mes += 1;
+            } else dia +=1;
+        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11){
+            if (dia == 30){
+                dia = 1;
+                mes += 1;
+            }  else dia +=1;
+        }
+        if (mes == 13){
+            mes = 1;
+            anio += 1;
+        }
+
+        System.out.println(dia + " / " + nombreMes[mes-1] + " / " + anio);
+
     }
 
     public static void  errorFecha(int dia,int mes){
@@ -108,5 +116,11 @@ public class N14VerificadorDeFecha {
             System.out.println("El mes de " + nombreMes[mes-1] + " solo tiene 30 dias.");
         }
     }
-}
 
+    public static boolean validarFecha(int dia,int mes){
+        if (mes == 2 && dia > 28) return false;
+        else if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30) return false;
+        else return true;
+    }
+
+}
