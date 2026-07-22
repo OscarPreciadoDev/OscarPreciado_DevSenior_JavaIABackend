@@ -28,9 +28,15 @@ public class N12NumeroCapicua {
                 System.out.println(mensajeNumeroErroneo);
             }
 
+
             run = Validador.continuacionDelPrograma(input,PreguntaEjecucion);
 
         } while (run);
+
+
+       input.close();
+        System.out.println(pieDePrograma);
+
     }
 
     public static boolean validarNumero(int num){
