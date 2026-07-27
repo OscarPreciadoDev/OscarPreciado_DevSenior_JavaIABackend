@@ -25,11 +25,14 @@ public class Cliente {
         this.ciudad = ciudad;
     }
 
+    // Getters de los datos del Usuario
     public int getId() { return id; }
     public String getNombre() { return nombre; }
     public String getEmail() { return email; }
     public String getCiudad() { return ciudad; }
 
+
+    // Un metodo que formatea a String los datos de un Usuario
     @Override
     public String toString() {
         return "Cliente{id=" + id + ", nombre='" + nombre

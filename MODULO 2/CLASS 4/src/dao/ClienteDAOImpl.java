@@ -11,9 +11,15 @@ import model.Cliente;
 
 public class ClienteDAOImpl implements ClienteDAO {
 
+    // Sobreescribe el metodo contratado de la interfaz ClienteDAO
     @Override
+    // Recordar que este metodo agrega un registro a la tabla Cliente de la base de datos
+
     public void insertar(Cliente cliente) {
+        // Preformatea un String que lleva la estructura de la instruccion SQL de insertar
+
         String sql = "INSERT INTO cliente (nombre, email, ciudad) VALUES (?, ?, ?)";
+
 
         try (Connection con = ConexionBD.obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
