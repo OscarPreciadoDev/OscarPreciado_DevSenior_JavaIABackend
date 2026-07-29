@@ -18,6 +18,13 @@ public class Cliente {
         this.ciudad = ciudad;
     }
 
+    public Cliente(int id, Cliente c) {
+        this.id = id;
+        this.nombre = c.getNombre();
+        this.email = c.getEmail();
+        this.ciudad = c.getCiudad();
+    }
+
     // Constructor con otra firma
     public Cliente(String nombre, String email, String ciudad) {
         this.nombre = nombre;

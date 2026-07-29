@@ -85,28 +85,60 @@ public class ClienteDAOImpl implements ClienteDAO {
         return clientes;
     }
 
+
+    // Sobre escritura del metodo contratado de clienteDAO
     @Override
+
+    // Metodo vacio que utilizara como parametro un cliente de clase Cliente
     public void actualizar(Cliente cliente) {
+
+        // String que almacenara la instruccion tipo SQL, donde ? se cambiara por los atributos del objeto usuario
         String sql = "UPDATE cliente SET nombre = ?, email = ?, ciudad = ? WHERE id = ?";
+
+        // Intenta crear una conexion (con) usando la clase ConexionBD (metodo obtenerConexion())
         try (Connection con = ConexionBD.obtenerConexion();
+
+             // Se crea un elemento PreparedStatment (ps) donde se pasa en la conexion el prepareStatment con la instruccion sql como parametro
              PreparedStatement ps = con.prepareStatement(sql)) {
+
+            // Esta declaracion se le pasarán los siguientes datos como parametros para remplazar los placeholder (?)
+
+            // Se asigna a cada posicion los datos correspondientes (Atributos del objeto Usuario)
             ps.setString(1, cliente.getNombre());
             ps.setString(2, cliente.getEmail());
             ps.setString(3, cliente.getCiudad());
             ps.setInt(4, cliente.getId());
+
+            // Finalmente, se imprime un mensaje indicando cuantas filas fueron actualizadas
+
             System.out.println("Filas actualizadas: " + ps.executeUpdate());
+
+            // De ocurrir un SQLException, se capta y se imprime un mensaje en consola indicando el error
         } catch (SQLException e) {
             System.out.println("Error al actualizar: " + e.getMessage());
         }
     }
 
+    // Se sobreescribe el metodo contratado de ClienteDAO
     @Override
+
+    // Consistira en un metodo vacio que recibe un int (id del usuario) como parametro
     public void eliminar(int id) {
+
+        // Sentencia SQL donde (?) se cambiara por el id
         String sql = "DELETE FROM cliente WHERE id = ?";
+
+        // Intenta crear una conexion con la base de datos
         try (Connection con = ConexionBD.obtenerConexion();
+
+             // crea un PreparedStatment donde pasada a la conexion la sentencia sql cambiando el placeholder por el id)
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
+
+            // Confirma en consola las filas eliminadas
             System.out.println("Filas eliminadas: " + ps.executeUpdate());
+
+        // Da manejo a las excepciones SQLException para que el programa no caiga
         } catch (SQLException e) {
             System.out.println("Error al eliminar: " + e.getMessage());
         }
