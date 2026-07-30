@@ -30,17 +30,8 @@ public class Validador{
         }
     }
 
-
     public static boolean continuacionDelPrograma(int eleccion){
         return eleccion != 5;
-    }
-
-    public static Cliente IngresarCliente(Scanner input){
-        String nombre = leerTexto(input, "Nombre: ");
-        String email = leerEmail(input, "Email: ");
-        String ciudad = leerTexto(input, "Ciudad: ");
-        // Se crea un nuevo cliente con los datos obtenidos
-        return new Cliente(nombre, email, ciudad);
     }
 
     public static String leerTexto(Scanner input, String mensaje){

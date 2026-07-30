@@ -1,12 +1,6 @@
 import controller.ClienteController;
-import dao.ClienteDAO;
-import model.Cliente;
-import util.Libreria;
-import util.ListadoClientes;
+import util.Lib;
 import util.Validador;
-import dao.ClienteDAO;
-import dao.ClienteDAOImpl;
-import model.Cliente;
 
 
 import java.util.Scanner;
@@ -15,35 +9,34 @@ public class App {
 
     public static void main(String[] args) {
 
-        Libreria lib = new Libreria();
         boolean run = true;
         Scanner input = new Scanner(System.in);
         int eleccion;
         ClienteController controller = new ClienteController();
 
 
-        System.out.println(lib.encabezado);
+        System.out.println(Lib.encabezado);
 
         do {
-            System.out.println(lib.menu);
+            System.out.println(Lib.menu);
             eleccion = Validador.leerEleccion(input,"Ingrese una opcion: ");
 
             switch (eleccion) {
                 case 1:
-                    System.out.println(lib.instruccionEntrada);
+                    System.out.println(Lib.instruccionEntrada);
                     controller.agregarCliente(input);
                     break;
                 case 2:
-                    System.out.println(lib.encabezadoLista);
+                    System.out.println(Lib.encabezadoLista);
                     controller.listarClientes();
                     break;
                 case 3:
-                    System.out.println(lib.encabezadoActualizar);
+                    System.out.println(Lib.encabezadoActualizar);
                     controller.listarClientes();
                     controller.actualizarCliente(input);
                     break;
                 case 4:
-                    System.out.println(lib.encabezadoEliminar);
+                    System.out.println(Lib.encabezadoEliminar);
                     controller.listarClientes();
                     controller.eliminarCliente(input);
                     break;
@@ -54,7 +47,7 @@ public class App {
         } while (run) ;
 
         input.close();
-        System.out.println(lib.pieDeApp);
+        System.out.println(Lib.pieDeApp);
 
     }
 }

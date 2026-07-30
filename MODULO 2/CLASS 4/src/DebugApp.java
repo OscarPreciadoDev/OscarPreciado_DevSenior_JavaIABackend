@@ -8,7 +8,7 @@ import model.Cliente;
 
 
 // Definicion de la clase que permite el punto de acceso de la app
-class AppTest {
+class DebugApp {
 
     // Metodo principal
     public static void main(String[] args) {

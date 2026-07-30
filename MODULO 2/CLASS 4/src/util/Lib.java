@@ -1,10 +1,10 @@
 package util;
 
-public class Libreria {
+public class Lib {
 
-    public Libreria() {}
+    public Lib() {}
 
-    public final String menu = """
+    public static String menu = """
             
             =============== MENU PRINCIPAL ===============
             
@@ -17,7 +17,7 @@ public class Libreria {
             ===============================================
             """;
 
-    public final String encabezado = """
+    public static String encabezado = """
             ========= APP DE GESTION DE CLIENTES =========
             
             Bienvenido a la app de gestion de clientes,
@@ -25,7 +25,7 @@ public class Libreria {
             realizar la tarea que desee hacer.
             """;
 
-    public final String pieDeApp = """
+    public static String pieDeApp = """
             
             ============== FIN DEL PROGRAMA ==============
             
@@ -34,7 +34,7 @@ public class Libreria {
             ==============================================
             """;
 
-    public final String instruccionEntrada = """
+    public static String instruccionEntrada = """
             
             ========== INGRESO DE NUEVO CLIENTE ==========
             
@@ -42,19 +42,19 @@ public class Libreria {
             
             """;
 
-    public final String encabezadoLista = """
+    public static String encabezadoLista = """
             
             ============== LISTA DE CLIENTES ==============
             """;
 
-    public final String encabezadoActualizar = """
+    public static String encabezadoActualizar = """
            
            ============ ACTUALIZACION DE DATOS ============
            
            Ingrese el ID del usuario que desea actualizar.
            """;
 
-    public final String encabezadoEliminar = """
+    public static String encabezadoEliminar = """
             
             ============== ELIMINAR USUARIO ===============
             

@@ -121,7 +121,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     // Se sobreescribe el metodo contratado de ClienteDAO
     @Override
-
     // Consistira en un metodo vacio que recibe un int (id del usuario) como parametro
     public void eliminar(int id) {
 
