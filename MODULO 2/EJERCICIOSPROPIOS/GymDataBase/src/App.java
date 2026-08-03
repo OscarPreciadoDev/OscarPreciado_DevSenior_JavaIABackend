@@ -3,8 +3,6 @@
 
 import dao.MiembroDAO;
 import dao.MiembroDAOImpl;
-import model.Miembro;
-
 
 
 // Definicion de la clase que permite el punto de acceso de la app

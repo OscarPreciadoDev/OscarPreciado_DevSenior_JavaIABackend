@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-import model.Miembro;
 
 
 // Clase que define un comportamiento y declara "OPERACIONES"

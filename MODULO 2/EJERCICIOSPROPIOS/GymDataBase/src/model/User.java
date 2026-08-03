@@ -1,8 +1,11 @@
-package com.gym.model;
+package model;
 
+// Se utiliza una libreria para tener el momento de registro de un usuario
 import java.sql.Timestamp;
 
 public class User {
+
+    // Atributos generales que posee un usuario
 
     private int id;
     private String firstName;
@@ -12,10 +15,12 @@ public class User {
     private UserType userType;
     private Timestamp createdAt;
 
+
+    // Constructor vacio
     public User() {
     }
 
-    // Constructor sin id, útil al crear un usuario nuevo antes del INSERT
+    // Constructor sin ID, útil al crear un usuario nuevo antes del INSERT
     public User(String firstName, String secondName, String email, String password, UserType userType) {
         this.firstName = firstName;
         this.secondName = secondName;
