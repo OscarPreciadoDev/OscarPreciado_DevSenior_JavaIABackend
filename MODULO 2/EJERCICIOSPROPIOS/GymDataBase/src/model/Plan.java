@@ -93,6 +93,6 @@ public class Plan {
                 ", daysDuration=" + daysDuration +
                 ", visitsIncluded=" + visitsIncluded +
                 '}';
-        // Nothing:)
+        // Nothing:)xd
     }
 }
