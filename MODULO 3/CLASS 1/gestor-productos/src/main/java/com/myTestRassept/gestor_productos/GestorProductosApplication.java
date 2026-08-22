@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GestorProductosApplication {
 
 
-	// Punto de conexion del programa
+	// Punto de conexión del programa
 	public static void main(String[] args) {
 		SpringApplication.run(GestorProductosApplication.class, args);
 	}
