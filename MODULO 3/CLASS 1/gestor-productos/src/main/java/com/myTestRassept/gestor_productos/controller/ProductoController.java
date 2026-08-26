@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/productos") // base de la dirección donde se encontraran TODAS las rutas, mapeo principal de las solicitudes
-
+@RequestMapping("/api/productos")
 public class ProductoController {
-
-    // Inyección de dependencias por constructor
     private final ProductoService productoService;
-
 
     public ProductoController(ProductoService productoService) {
         this.productoService = productoService;
     }
 
-    // Utiliza la tarea que puede gestionar el productoService
     @GetMapping
     public List<Producto> obtenerProductos() {
         return productoService.listarProductos();
     }
 
-    // Recibe información para crear un producto nuevo
+    @GetMapping("/categoria/{categoriaId}")
+    public List<Producto> obtenerPorCategoria(
+            @PathVariable Long categoriaId) {
+        return productoService.listarPorCategoria(categoriaId);
+    }
+
     @PostMapping
     public Producto crearProducto(@RequestBody Producto producto) {
         return productoService.agregarProducto(producto);

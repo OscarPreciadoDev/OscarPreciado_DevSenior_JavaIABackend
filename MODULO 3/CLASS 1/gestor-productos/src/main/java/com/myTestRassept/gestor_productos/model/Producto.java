@@ -1,52 +1,97 @@
 package com.myTestRassept.gestor_productos.model;
 
+import jakarta.persistence.*;
 
-// Definición de la clase producto
+@Entity
+@Table(name = "productos")
 public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    // Atributos de clase, son privados.
-    private int id;
     private String nombre;
+    private String descripcion;
     private double precio;
+    private int stock;
 
-    // Constructor vacío (Debe dejarse para que Spring funcione sin problema).
-    public Producto() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
-    // Constructor principal (Constructor de negocio).
-    public Producto(int id, String nombre, double precio) {
+    @ManyToOne
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
+
+    public Producto() {}
+
+
+
+    // getters y setters de todos los campos
+
+
+    public Producto(Long id, String nombre, String descripcion, double precio, int stock, Categoria categoria, Marca marca) {
         this.id = id;
         this.nombre = nombre;
+        this.descripcion = descripcion;
         this.precio = precio;
+        this.stock = stock;
+        this.categoria = categoria;
+        this.marca = marca;
     }
 
-    // Getter de ID.
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    // Setter de ID.
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    // Getter de nombre.
     public String getNombre() {
         return nombre;
     }
 
-    // Setter de nombre.
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    // Getter de precio.
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public double getPrecio() {
         return precio;
     }
 
-    // Setter de precio.
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 }
