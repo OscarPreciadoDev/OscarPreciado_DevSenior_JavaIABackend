@@ -4,9 +4,9 @@ package com.myTestRassept.gestor_productos.service;
 import com.myTestRassept.gestor_productos.model.Categoria;
 import com.myTestRassept.gestor_productos.model.Marca;
 import com.myTestRassept.gestor_productos.model.Producto;
-import com.myTestRassept.gestor_productos.repository.categoriaRepository;
-import com.myTestRassept.gestor_productos.repository.marcaRepository;
-import com.myTestRassept.gestor_productos.repository.productoRepository;
+import com.myTestRassept.gestor_productos.repository.CategoriaRepository;
+import com.myTestRassept.gestor_productos.repository.MarcaRepository;
+import com.myTestRassept.gestor_productos.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +16,14 @@ import java.util.List;
 public class ProductoService {
 
     //Inyección de dependencias
-    private final productoRepository productoRepository;
-    private final categoriaRepository categoriaRepository;
-    private final marcaRepository marcaRepository;
+    private final ProductoRepository productoRepository;
+    private final CategoriaRepository categoriaRepository;
+    private final MarcaRepository marcaRepository;
 
     @Autowired
-    public ProductoService(productoRepository productoRepository,
-                           categoriaRepository categoriaRepository,
-                           marcaRepository marcaRepository) {
+    public ProductoService(ProductoRepository productoRepository,
+                           CategoriaRepository categoriaRepository,
+                           MarcaRepository marcaRepository) {
         this.productoRepository = productoRepository;
         this.categoriaRepository = categoriaRepository;
         this.marcaRepository = marcaRepository;

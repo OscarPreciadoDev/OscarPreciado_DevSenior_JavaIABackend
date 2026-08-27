@@ -1,25 +1,29 @@
-package com.myTestRassept.gestor_productos.model;
+package com.myTestRassept.gestor_productos.model;                   // Ubicacion de la clase.
 
-import jakarta.persistence.*;
+import jakarta.persistence.*;                                       // Librerías utilizadas en esta clase.
 
-@Entity
-@Table(name = "marcas")
-public class Marca {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Entity                                                             // Anotación que indica que esto es una tabla en BD.
+@Table(name = "marcas")                                             // Nombre a dar en la tabla en BD.
+public class Marca {                                                // Inicio de la clase.
 
-    private String nombre;
+    // DECLARACION DE ATRIBUTOS (PRIVADOS)
 
-    public Marca() {}
+    @Id                                                             // Anotacion que indica que este es el PK en BD.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)             // Manera de generar el @id.
+    private Long id;                                                // Atributo que pasara a ser id.
 
-    public Marca(Long id, String nombre) {
+    private String nombre;                                          // Atributo que pasara a columna de clase.
+
+    // DECLARACION DE CONSTRUCTORES (PUBLICOS)
+
+    public Marca() {}                                               // Constructor vacio solicitado por JPA/Hibernate.
+
+    public Marca(Long id, String nombre) {                          // Constructor completo con los atributos correspondientes.
         this.id = id;
         this.nombre = nombre;
     }
 
-    // getters y setters
-
+    // DECLARACION DE GETTERS Y SETTERS (No tienen mayor explicacion, ver la dada en model/Categoria.
 
     public Long getId() {
         return id;

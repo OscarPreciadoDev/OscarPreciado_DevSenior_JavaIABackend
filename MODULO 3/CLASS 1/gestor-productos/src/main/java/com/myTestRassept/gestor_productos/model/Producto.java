@@ -1,35 +1,41 @@
-package com.myTestRassept.gestor_productos.model;
+package com.myTestRassept.gestor_productos.model;                   // Ubicación de la clase.
 
-import jakarta.persistence.*;
+import jakarta.persistence.*;                                       // Librerías utilizadas en esta clase.
 
-@Entity
-@Table(name = "productos")
-public class Producto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Entity                                                             // Anotación que indica que esto es una tabla en BD.
+@Table(name = "productos")                                          // Nombre a dar en la tabla en BD.
+public class Producto {                                             // Inicio de la clase.
 
-    private String nombre;
-    private String descripcion;
-    private double precio;
-    private int stock;
+    // DECLARACION DE ATRIBUTOS (TODOS PRIVADOS)
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    @Id                                                             // Anotacion que indica que este es el PK en BD.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)             // Manera de generar el @id.
+    private Long id;                                                // Atributo que pasara a ser id.
 
-    @ManyToOne
-    @JoinColumn(name = "marca_id")
-    private Marca marca;
+    private String nombre;                                          // Atributo que pasara a columna de tabla.
+    private String descripcion;                                     // Atributo que pasara a columna de tabla.
+    private double precio;                                          // Atributo que pasara a columna de tabla.
+    private int stock;                                              // Atributo que pasara a columna de tabla.
 
-    public Producto() {}
+    @ManyToOne                                                      // Tipo de relacion de la sigueinte columna en la tabla (Categoria [1 - M]) Productos).
+    @JoinColumn(name = "categoria_id")                              // Ingresa la FK categoria_id (de la tabla categoria).
+    private Categoria categoria;                                    // Atributo-columna donde se inyecta la FK.
 
+    @ManyToOne                                                      // Tipo de relacion del siguiente atributo en la tabla (Marca [1 - M]) Productos).
+    @JoinColumn(name = "marca_id")                                  // Ingresa la FK categoria_id (de la tabla categoria).
+    private Marca marca;                                            // Atributo-columna donde se inyecta la FK.
 
+    // CONSTRUCTORES (PUBLICOS)
 
-    // getters y setters de todos los campos
+    public Producto() {}                                            // Constructor vacio solicitado por JPA/Hibernate.
 
-
-    public Producto(Long id, String nombre, String descripcion, double precio, int stock, Categoria categoria, Marca marca) {
+    public Producto(Long id,                                        // // Constructor completo con los atributos correspondientes.
+                    String nombre,
+                    String descripcion,
+                    double precio,
+                    int stock,
+                    Categoria categoria,
+                    Marca marca) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -38,6 +44,8 @@ public class Producto {
         this.categoria = categoria;
         this.marca = marca;
     }
+
+    // DECLARACION DE GETTERS Y SETTERS (No tienen mayor explicacion, ver la dada en model/Categoria.
 
     public Long getId() {
         return id;
