@@ -25,7 +25,7 @@ public class CategoriaController {                                      // Inici
         return categoriaService.listarCategorias();                     // Pasa la instruccion al service.
     }
 
-    @PostMapping                                                        // Mapea un metodo a peticiones HTTP POST.
+    @PostMapping                                                       // Mapea un metodo a peticiones HTTP POST.
     public Categoria crearCategoria(@RequestBody Categoria categoria) { // Busca un metodo que crea categorias.
         return categoriaService.agregarCategoria(categoria);            // Pasa la instruccion al service.
     }
