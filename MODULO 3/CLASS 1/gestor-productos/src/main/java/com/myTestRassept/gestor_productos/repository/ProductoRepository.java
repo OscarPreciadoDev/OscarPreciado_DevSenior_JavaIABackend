@@ -8,6 +8,10 @@ import java.util.List;
 
 @Repository
 public interface ProductoRepository extends JpaRepository <Producto, Long>{
+
+    // Busca un elemento por ID.
     List<Producto> findByCategoriaId(Long categoriaId);
+
+    // Busca un elemento sin importar si es mayuscula o minuscula.
     List<Producto> findByNombreContainingIgnoreCase(String nombre);
 }

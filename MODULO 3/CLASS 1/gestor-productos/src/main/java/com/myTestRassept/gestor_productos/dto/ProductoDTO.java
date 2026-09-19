@@ -29,6 +29,8 @@ public class ProductoDTO {
                 ? producto.getMarca().getNombre() : null;
     }
 
+    // Getters
+
     public String getMarca() {
         return marca;
     }

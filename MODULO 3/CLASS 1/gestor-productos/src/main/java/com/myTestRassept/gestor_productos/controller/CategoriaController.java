@@ -1,5 +1,6 @@
 package com.myTestRassept.gestor_productos.controller;                  // Ubicacion de la clase.
 
+import com.myTestRassept.gestor_productos.service.ProductoService;
 import org.springframework.web.bind.annotation.*;                       // Librerias usadas en esta clase.
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class CategoriaController {                                      // Inici
     // INYECCION DE DEPENDENCIAS
 
     private final CategoriaService categoriaService;                    // Indica que esta clase tendra un atributo CategoriaService inmutable (dependencia)
+
     public CategoriaController (CategoriaService categoriaService) {    // La inyecta en este constructor
         this.categoriaService = categoriaService;
     }
@@ -25,7 +27,7 @@ public class CategoriaController {                                      // Inici
         return categoriaService.listarCategorias();                     // Pasa la instruccion al service.
     }
 
-    @PostMapping                                                       // Mapea un metodo a peticiones HTTP POST.
+    @PostMapping("/crear")                                                  // Mapea un metodo a peticiones HTTP POST.
     public Categoria crearCategoria(@RequestBody Categoria categoria) { // Busca un metodo que crea categorias.
         return categoriaService.agregarCategoria(categoria);            // Pasa la instruccion al service.
     }
