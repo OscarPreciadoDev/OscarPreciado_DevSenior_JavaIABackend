@@ -5,6 +5,7 @@ import com.myTestRassept.gestor_productos.dto.AuthResponse;
 import com.myTestRassept.gestor_productos.dto.LoginRequest;
 import com.myTestRassept.gestor_productos.dto.RegistroRequest;
 import com.myTestRassept.gestor_productos.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public AuthResponse register(@RequestBody RegistroRequest request) {
+    public AuthResponse register(@Valid @RequestBody RegistroRequest request) {
         return authService.registrar(request);
     }
 

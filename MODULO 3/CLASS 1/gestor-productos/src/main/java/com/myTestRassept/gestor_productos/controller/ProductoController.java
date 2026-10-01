@@ -1,5 +1,6 @@
 package com.myTestRassept.gestor_productos.controller;                  // Ubicacion de la clase.
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;                       // Librerias usadas en esta clase.
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class ProductoController {                                       // Inici
     }
 
     @PostMapping
-    public ProductoDTO crearProducto(@RequestBody Producto producto) {
+    public ProductoDTO crearProducto(@Valid @RequestBody Producto producto) {
         Producto guardado = productoService.agregarProducto(producto);
         return new ProductoDTO(guardado);
     }

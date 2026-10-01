@@ -1,26 +1,34 @@
 package com.myTestRassept.gestor_productos.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class RegistroRequest {
 
-
+    @NotBlank(message = "El correo es obligatorio")
+    @Email(message = "El correo no tiene un formato válido")
     private String email;
+
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     private String password;
 
-    // Este registro puede llevar mas campos como nombre, apellido, etc..
+    // getters y setters
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
+    public @NotBlank(message = "El correo es obligatorio") @Email(message = "El correo no tiene un formato válido") String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(@NotBlank(message = "El correo es obligatorio") @Email(message = "El correo no tiene un formato válido") String email) {
         this.email = email;
+    }
+
+    public @NotBlank(message = "La contraseña es obligatoria") @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres") String getPassword() {
+        return password;
+    }
+
+    public void setPassword(@NotBlank(message = "La contraseña es obligatoria") @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres") String password) {
+        this.password = password;
     }
 }
