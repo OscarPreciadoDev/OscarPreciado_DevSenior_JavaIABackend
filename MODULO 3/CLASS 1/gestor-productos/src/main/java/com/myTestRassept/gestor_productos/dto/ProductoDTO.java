@@ -27,6 +27,8 @@ public class ProductoDTO {
                 ? producto.getCategoria().getNombre() : null;
         this.marca = producto.getMarca() != null
                 ? producto.getMarca().getNombre() : null;
+
+
     }
 
     // Getters
