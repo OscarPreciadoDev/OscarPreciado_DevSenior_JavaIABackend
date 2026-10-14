@@ -17,6 +17,8 @@ public class Usuario {
     private String nombre;
     private String email;
 
+    public Usuario(){}
+
     public Long getId() {
         return id;
     }
