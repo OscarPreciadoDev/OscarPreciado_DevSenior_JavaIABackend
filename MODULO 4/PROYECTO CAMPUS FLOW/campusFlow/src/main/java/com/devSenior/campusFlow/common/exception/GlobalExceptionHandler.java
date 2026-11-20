@@ -36,9 +36,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(Map.of("error", "La operación entra en conflicto con datos existentes: revisa el email o las relaciones del usuario."));
     }
 
-    // Maneja la excepcion cuando las credenciales son invalidas
+    // Maneja la excepción cuando las credenciales son inválidas
 
-    // Se arreglara la dependencia de spring security para que no se muestre el error de la excepcion PENDIENTE
+    // Se arreglará la dependencia de spring security para que no se muestre el error de la excepcion PENDIENTE
     @ExceptionHandler(org.springframework.security.core.AuthenticationException.class)
     public ResponseEntity<Map<String, String>> manejarAutenticacion(
             org.springframework.security.core.AuthenticationException ex) {
@@ -46,11 +46,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(Map.of("error", "Credenciales inválidas"));
     }
 
-    // Maneja la excepcion cuando ocurre un error no controlado
+    // Maneja la excepción cuando ocurre un error no controlado
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> manejarGeneral(Exception ex) {
         log.error("Error no controlado al procesar la petición", ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("error", "Ocurrió un error interno. Intenta de nuevo."));
     }
+
+    // Excepción para planes no disponibles
+    @ExceptionHandler(PlanNoDisponibleException.class)
+    public ResponseEntity<Map<String, String>> manejarPlanNoDisponible(
+            PlanNoDisponibleException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("error", ex.getMessage()));
+    }
+
+
 }
