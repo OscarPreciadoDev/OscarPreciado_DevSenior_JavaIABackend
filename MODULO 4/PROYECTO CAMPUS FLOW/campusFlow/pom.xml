@@ -85,6 +85,14 @@
             <version>33.4.2</version>
         </dependency>
 
+        <!-- Dependencia de PostgreSQL -->
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
 	<!-- Build -->
