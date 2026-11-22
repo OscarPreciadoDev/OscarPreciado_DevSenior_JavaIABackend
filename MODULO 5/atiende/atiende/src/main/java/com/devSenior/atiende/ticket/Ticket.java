@@ -60,7 +60,17 @@ public class Ticket {
 
 	@PreUpdate
 	public void alActualizar() {
+		LocalDateTime anterior = fechaActualizacion;
 		fechaActualizacion = LocalDateTime.now();
+		// #region agent log
+		agenteLog("H1", "Ticket.alActualizar", "callback PreUpdate",
+				"{\"id\":" + id
+						+ ",\"identidad\":" + System.identityHashCode(this)
+						+ ",\"fechaCreacion\":\"" + fechaCreacion
+						+ "\",\"anterior\":\"" + anterior
+						+ "\",\"nueva\":\"" + fechaActualizacion
+						+ "\",\"igualACreacion\":" + fechaActualizacion.equals(fechaCreacion) + "}");
+		// #endregion
 	}
 
 	public Long getId() {
@@ -134,4 +144,19 @@ public class Ticket {
 	public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
 	}
+
+	// #region agent log
+	private static void agenteLog(String hypothesisId, String location, String message, String dataJson) {
+		try (var escritor = java.nio.file.Files.newBufferedWriter(
+				java.nio.file.Path.of("c:\\Users\\oprec\\Documents\\_ Code\\DEV SENIOR\\JAVA IA ENGINNER\\JAVA IA BACKEND DEVELOPER\\REPOSITORIO\\MODULO 5\\.cursor\\debug-5231f2.log"),
+				java.nio.charset.StandardCharsets.UTF_8,
+				java.nio.file.StandardOpenOption.CREATE,
+				java.nio.file.StandardOpenOption.APPEND)) {
+			escritor.write("{\"sessionId\":\"5231f2\",\"runId\":\"pre-fix\",\"hypothesisId\":\"" + hypothesisId
+					+ "\",\"location\":\"" + location + "\",\"message\":\"" + message + "\",\"data\":" + dataJson
+					+ ",\"timestamp\":" + System.currentTimeMillis() + "}\n");
+		} catch (Exception ignorada) {
+		}
+	}
+	// #endregion
 }
