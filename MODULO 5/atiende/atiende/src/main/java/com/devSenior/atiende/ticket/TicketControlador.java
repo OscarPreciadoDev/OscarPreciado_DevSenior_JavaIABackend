@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devSenior.atiende.ticket.dto.AnalisisSentimientoRespuesta;
 import com.devSenior.atiende.ticket.dto.CambiarEstadoPeticion;
 import com.devSenior.atiende.ticket.dto.CrearTicketPeticion;
 import com.devSenior.atiende.ticket.dto.TicketRespuesta;
@@ -24,9 +25,11 @@ import jakarta.validation.Valid;
 public class TicketControlador {
 
 	private final TicketServicio ticketServicio;
+	private final SentimientoServicio sentimientoServicio;
 
-	public TicketControlador(TicketServicio ticketServicio) {
+	public TicketControlador(TicketServicio ticketServicio, SentimientoServicio sentimientoServicio) {
 		this.ticketServicio = ticketServicio;
+		this.sentimientoServicio = sentimientoServicio;
 	}
 
 	@PostMapping
@@ -49,5 +52,10 @@ public class TicketControlador {
 			@PathVariable Long id,
 			@Valid @RequestBody CambiarEstadoPeticion peticion) {
 		return ticketServicio.cambiarEstado(id, peticion.estado());
+	}
+
+	@PostMapping("/{id}/sentimiento")
+	public AnalisisSentimientoRespuesta analizarSentimiento(@PathVariable Long id) {
+		return sentimientoServicio.analizar(id);
 	}
 }

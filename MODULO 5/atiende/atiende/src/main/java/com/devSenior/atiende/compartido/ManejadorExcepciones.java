@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import com.devSenior.atiende.ia.ExcepcionIAProveedorNoDisponible;
+import com.devSenior.atiende.ia.ExcepcionRespuestaIAInvalida;
 import tools.jackson.core.JacksonException;
 
 @RestControllerAdvice
@@ -61,6 +63,24 @@ public class ManejadorExcepciones {
 				HttpStatus.CONFLICT,
 				"TRANSICION_NO_PERMITIDA",
 				"Transición no permitida",
+				excepcion.getMessage());
+	}
+
+	@ExceptionHandler(ExcepcionRespuestaIAInvalida.class)
+	public ResponseEntity<RespuestaError> respuestaIAInvalida(ExcepcionRespuestaIAInvalida excepcion) {
+		return respuesta(
+				HttpStatus.BAD_GATEWAY,
+				"RESPUESTA_IA_INVALIDA",
+				"Respuesta inválida de IA",
+				excepcion.getMessage());
+	}
+
+	@ExceptionHandler(ExcepcionIAProveedorNoDisponible.class)
+	public ResponseEntity<RespuestaError> proveedoresIANoDisponibles(ExcepcionIAProveedorNoDisponible excepcion) {
+		return respuesta(
+				HttpStatus.SERVICE_UNAVAILABLE,
+				"IA_NO_DISPONIBLE",
+				"IA no disponible",
 				excepcion.getMessage());
 	}
 
