@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.devSenior.atiende.ia.AsistenteIA;
+import com.devSenior.atiende.ia.BibliotecaPrompts;
 import com.devSenior.atiende.ia.ExcepcionRespuestaIAInvalida;
 import com.devSenior.atiende.ia.RespuestaIA;
 import com.devSenior.atiende.ticket.dto.AnalisisSentimientoRespuesta;
@@ -27,7 +28,7 @@ class SentimientoServicioTest {
 	void inicializarServicio() {
 		ticketServicio = mock(TicketServicio.class);
 		asistenteIA = mock(AsistenteIA.class);
-		sentimientoServicio = new SentimientoServicio(ticketServicio, asistenteIA);
+		sentimientoServicio = new SentimientoServicio(ticketServicio, asistenteIA, new BibliotecaPrompts());
 		when(ticketServicio.buscarPorId(1L)).thenReturn(ticketDePrueba());
 	}
 
