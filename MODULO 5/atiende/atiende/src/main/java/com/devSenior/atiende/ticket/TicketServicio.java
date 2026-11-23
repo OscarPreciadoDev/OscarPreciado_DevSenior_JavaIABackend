@@ -81,6 +81,16 @@ public class TicketServicio {
 		return respuesta;
 	}
 
+	public TicketRespuesta aplicarClasificacion(Long id, ClasificacionIA clasificacion, Long numeroPedido) {
+		Ticket ticket = buscarTicket(id);
+		ticket.setCategoria(clasificacion.categoria());
+		ticket.setPrioridad(clasificacion.prioridad());
+		ticket.setSentimiento(clasificacion.sentimiento());
+		ticket.setResumen(clasificacion.resumen());
+		ticket.setNumeroPedido(numeroPedido);
+		return ticketMapeador.aRespuesta(ticketRepositorio.saveAndFlush(ticket));
+	}
+
 	// #region agent log
 	private static String fechasJson(Ticket ticket, boolean mismaInstancia) {
 		return "{\"id\":" + ticket.getId()

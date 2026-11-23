@@ -70,6 +70,10 @@ class SentimientoServicioTest {
 				"Estoy muy molesto",
 				EstadoTicket.ABIERTO,
 				PrioridadTicket.MEDIA,
+				null,
+				null,
+				null,
+				null,
 				LocalDateTime.now(),
 				LocalDateTime.now());
 	}
