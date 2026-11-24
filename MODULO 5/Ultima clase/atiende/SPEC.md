@@ -165,3 +165,65 @@ Viven en el sistema de la tienda (simulado en `PedidoService`): 1045, 1046 y 105
 - [ ] Si el cliente pide hablar con una persona, la respuesta trae escalado true y el id de un ticket nuevo.
 - [ ] Si la IA promete un cupón, el cliente recibe el mensaje seguro y se crea un ticket.
 - [ ] Los 38 tests anteriores siguen en verde.
+
+# SPEC · Atiende · Fase 4: Atiende trabaja solo
+
+## Problema
+Los tickets solo se clasifican cuando alguien lo pide, la fila no distingue entre urgentes y los comprobantes de pago se revisan a mano.
+
+## Objetivo de la fase 4
+1. Clasificar automáticamente los tickets nuevos, por lotes y a un ritmo controlado.
+2. Ordenar la fila de trabajo con un puntaje de urgencia explicable.
+3. Leer comprobantes de pago (imagen o PDF) y compararlos con el pedido.
+4. Generar un reporte semanal: cifras calculadas por Java y resumen redactado por la IA.
+
+## Fuera de alcance
+- Enviar el reporte por correo.
+- Marcar un pedido como pagado: lo confirma una persona en el banco.
+- Colas de mensajes y varios servidores.
+- Autenticación (deuda técnica declarada desde la Fase 2).
+
+## Automatización
+1. Todo ticket nuevo nace con estadoIA PENDIENTE.
+2. Cada `atiende.automatizacion.intervalo-ms` se toman hasta `atiende.automatizacion.lote` tickets PENDIENTE, del más antiguo al más nuevo.
+3. Si la clasificación sale bien: CLASIFICADO.
+4. Si la IA responde algo inválido: se suma un intento; al llegar a `atiende.automatizacion.max-intentos` queda FALLIDO.
+5. Si la IA no está disponible: se detiene la vuelta sin sumar intentos.
+
+## Fecha límite
+La clasificación extrae la fecha para la que el cliente necesita el pedido, tomando como "hoy" el día en que escribió. Se guarda solo si no es anterior a ese día ni posterior a 60 días.
+
+## Puntaje de urgencia (0 a 100)
+| Señal | Puntos |
+|---|---|
+| Prioridad | URGENTE 40 · ALTA 30 · MEDIA 15 · BAJA 5 |
+| Sentimiento MOLESTO | 15 |
+| Fecha límite vencida o en 2 días o menos | 25 |
+| Fecha límite en 3 a 7 días | 10 |
+| Retraso del pedido | 5 por día, máximo 20 |
+Cada punto se informa con su razón. La fila incluye los tickets ABIERTO y EN_PROCESO, de mayor a menor puntaje.
+
+## Comprobantes
+1. Se aceptan PNG, JPG y PDF de hasta 2 MB.
+2. La IA solo extrae: si es comprobante, banco, valor, fecha, referencia y número de pedido.
+3. Java decide el resultado: NO_ES_COMPROBANTE, PEDIDO_NO_ENCONTRADO, PEDIDO_NO_ESPERA_PAGO, VALOR_DISTINTO o COINCIDE.
+4. Nunca se marca un pedido como pagado: el resultado dice el siguiente paso para una persona.
+
+## Reporte semanal
+Cifras de los últimos 7 días (por categoría, prioridad, sentimiento, escalados por chatbot y sin clasificar). La IA solo redacta; no calcula.
+
+## Endpoints
+| Método | Ruta | Respuestas |
+|---|---|---|
+| GET | /api/tickets/fila | 200 |
+| POST | /api/tickets/{id}/comprobante | 200 · 400 · 404 · 413 · 502 · 503 |
+| POST | /api/reportes/semanal | 200 · 502 · 503 |
+
+## Criterios de aceptación
+- [ ] Un ticket nuevo aparece CLASIFICADO en menos de un minuto sin llamar a ningún endpoint de clasificación.
+- [ ] Con la llave dañada, los tickets quedan PENDIENTE con 0 intentos y se clasifican solos al restaurarla.
+- [ ] La fila pone a Laura de primera con 95 puntos y cuatro razones.
+- [ ] El comprobante correcto del pedido 1047 da COINCIDE; el de valor distinto, VALOR_DISTINTO; una foto que no es comprobante, NO_ES_COMPROBANTE.
+- [ ] Un archivo de texto da 400.
+- [ ] El reporte trae las cifras de la semana y un resumen ejecutivo.
+- [ ] Los 53 tests anteriores siguen en verde.
