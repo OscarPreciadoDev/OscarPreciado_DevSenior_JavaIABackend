@@ -3,7 +3,10 @@ package com.devsenior.atiende.ticket;
 import com.devsenior.atiende.compartido.RecursoNoEncontradoException;
 import com.devsenior.atiende.ticket.dto.TicketRequest;
 import com.devsenior.atiende.ticket.dto.TicketResponse;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +26,7 @@ public class TicketService {
         Ticket ticket = ticketMapper.toEntity(request);
         ticket.setEstado(EstadoTicket.ABIERTO);
         ticket.setPrioridad(Prioridad.MEDIA);
+        ticket.setEstadoIA(EstadoIA.PENDIENTE);
         return ticketMapper.toResponse(ticketRepository.save(ticket));
     }
 
@@ -52,14 +56,51 @@ public class TicketService {
     }
 
     @Transactional
-    public TicketResponse aplicarClasificacion(Long id, ClasificacionIA clasificacion, Long numeroPedido) {
+    public TicketResponse aplicarClasificacion(Long id, ClasificacionIA clasificacion,
+                                               Long numeroPedido, LocalDate fechaLimite) {
         Ticket ticket = obtenerTicket(id);
         ticket.setCategoria(clasificacion.categoria());
         ticket.setPrioridad(clasificacion.prioridad());
         ticket.setSentimiento(clasificacion.sentimiento());
         ticket.setResumen(clasificacion.resumen());
         ticket.setNumeroPedido(numeroPedido);
+        ticket.setFechaLimite(fechaLimite);
+        ticket.setEstadoIA(EstadoIA.CLASIFICADO);
         return ticketMapper.toResponse(ticketRepository.saveAndFlush(ticket));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Long> pendientesDeClasificar(int cantidad) {
+        return ticketRepository.findByEstadoIAOrderByFechaCreacionAsc(EstadoIA.PENDIENTE, PageRequest.of(0, cantidad))
+                .stream()
+                .map(Ticket::getId)
+                .toList();
+    }
+
+    @Transactional
+    public void registrarFalloIA(Long id, int maximoIntentos) {
+        Ticket ticket = obtenerTicket(id);
+        ticket.setIntentosIA(ticket.getIntentosIA() + 1);
+        if (ticket.getIntentosIA() >= maximoIntentos) {
+            ticket.setEstadoIA(EstadoIA.FALLIDO);
+        }
+        ticketRepository.save(ticket);
+    }
+
+    @Transactional(readOnly = true)
+    public List<TicketResponse> listarPorAtender() {
+        return ticketRepository.findByEstadoIn(List.of(EstadoTicket.ABIERTO, EstadoTicket.EN_PROCESO))
+                .stream()
+                .map(ticketMapper::toResponse)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<TicketResponse> creadosDesde(LocalDateTime desde) {
+        return ticketRepository.findByFechaCreacionGreaterThanEqual(desde)
+                .stream()
+                .map(ticketMapper::toResponse)
+                .toList();
     }
 
     private Ticket obtenerTicket(Long id) {

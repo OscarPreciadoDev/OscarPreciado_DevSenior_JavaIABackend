@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -53,6 +54,14 @@ public class Ticket {
     private String resumen;
 
     private Long numeroPedido;
+
+    private LocalDate fechaLimite;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private EstadoIA estadoIA;
+
+    private int intentosIA;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime fechaCreacion;
@@ -157,6 +166,30 @@ public class Ticket {
 
     public void setNumeroPedido(Long numeroPedido) {
         this.numeroPedido = numeroPedido;
+    }
+
+    public LocalDate getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public void setFechaLimite(LocalDate fechaLimite) {
+        this.fechaLimite = fechaLimite;
+    }
+
+    public EstadoIA getEstadoIA() {
+        return estadoIA;
+    }
+
+    public void setEstadoIA(EstadoIA estadoIA) {
+        this.estadoIA = estadoIA;
+    }
+
+    public int getIntentosIA() {
+        return intentosIA;
+    }
+
+    public void setIntentosIA(int intentosIA) {
+        this.intentosIA = intentosIA;
     }
 
     public LocalDateTime getFechaCreacion() {

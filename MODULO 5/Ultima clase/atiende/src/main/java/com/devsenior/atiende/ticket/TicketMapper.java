@@ -30,7 +30,9 @@ public class TicketMapper {
                 ticket.getCategoria(),
                 ticket.getSentimiento(),
                 ticket.getResumen(),
-                ticket.getNumeroPedido()
+                ticket.getNumeroPedido(),
+                ticket.getFechaLimite(),
+                ticket.getEstadoIA()
         );
     }
 }
