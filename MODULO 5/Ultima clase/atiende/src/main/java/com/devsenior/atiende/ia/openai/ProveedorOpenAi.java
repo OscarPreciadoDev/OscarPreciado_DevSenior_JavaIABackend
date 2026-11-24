@@ -5,6 +5,7 @@ import com.devsenior.atiende.ia.IaProperties;
 import com.devsenior.atiende.ia.ProveedorIA;
 import com.devsenior.atiende.ia.ProveedorIAException;
 import com.devsenior.atiende.ia.RespuestaIA;
+import java.util.Base64;
 import java.util.List;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -44,7 +45,26 @@ public class ProveedorOpenAi implements ProveedorIA {
                         new OpenAiFormato.Mensaje("user", mensaje)),
                 maxTokens,
                 0.0);
+        return ejecutar(peticion);
+    }
 
+    @Override
+    public RespuestaIA completarConArchivo(String instrucciones, String mensaje,
+                                           byte[] archivo, String tipoArchivo) {
+        String urlDeDatos = "data:" + tipoArchivo + ";base64," + Base64.getEncoder().encodeToString(archivo);
+        OpenAiFormato.PeticionConPartes peticion = new OpenAiFormato.PeticionConPartes(
+                config.modelo(),
+                List.of(new OpenAiFormato.MensajeConPartes("system",
+                                List.of(OpenAiFormato.Parte.texto(instrucciones))),
+                        new OpenAiFormato.MensajeConPartes("user",
+                                List.of(OpenAiFormato.Parte.texto(mensaje),
+                                        OpenAiFormato.Parte.archivo(urlDeDatos)))),
+                maxTokens,
+                0.0);
+        return ejecutar(peticion);
+    }
+
+    private RespuestaIA ejecutar(Object peticion) {
         long inicio = System.currentTimeMillis();
         OpenAiFormato.Respuesta respuesta = enviar(peticion);
         long milisegundos = System.currentTimeMillis() - inicio;
@@ -57,7 +77,7 @@ public class ProveedorOpenAi implements ProveedorIA {
                 config.calcularCosto(tokensEntrada, tokensSalida), milisegundos);
     }
 
-    private OpenAiFormato.Respuesta enviar(OpenAiFormato.Peticion peticion) {
+    private OpenAiFormato.Respuesta enviar(Object peticion) {
         try {
             return restClient.post()
                     .uri("/chat/completions")

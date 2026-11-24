@@ -1,5 +1,6 @@
 package com.devsenior.atiende.ia.openai;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,6 +18,32 @@ final class OpenAiFormato {
     }
 
     record Mensaje(String role, String content) {
+    }
+
+    record PeticionConPartes(
+            String model,
+            List<MensajeConPartes> messages,
+            @JsonProperty("max_tokens") int maxTokens,
+            double temperature
+    ) {
+    }
+
+    record MensajeConPartes(String role, List<Parte> content) {
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    record Parte(String type, String text, @JsonProperty("image_url") UrlDeArchivo imageUrl) {
+
+        static Parte texto(String texto) {
+            return new Parte("text", texto, null);
+        }
+
+        static Parte archivo(String urlDeDatos) {
+            return new Parte("image_url", null, new UrlDeArchivo(urlDeDatos));
+        }
+    }
+
+    record UrlDeArchivo(String url) {
     }
 
     record Respuesta(List<Opcion> choices, Uso usage) {

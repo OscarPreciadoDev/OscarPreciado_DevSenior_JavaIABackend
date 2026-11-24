@@ -34,6 +34,11 @@ public class GlobalExceptionHandler {
         return construir(HttpStatus.BAD_GATEWAY, ex.getMessage());
     }
 
+    @ExceptionHandler(ArchivoNoValidoException.class)
+    public ResponseEntity<ErrorResponse> manejarArchivoNoValido(ArchivoNoValidoException ex) {
+        return construir(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> manejarValidacion(MethodArgumentNotValidException ex) {
         String mensaje = ex.getBindingResult().getFieldErrors().stream()
